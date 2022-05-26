@@ -1,4 +1,5 @@
 # Pipeline template to check if a model was registered for the build and publishes an artifact with the model JSON
+# Pipeline template to check if a model was registered for the build and publishes an artifact with the model JSON
 steps:
 - task: AzureCLI@1
   displayName: 'Install AzureML CLI'

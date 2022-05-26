@@ -1,4 +1,4 @@
-# Continuous Integration (CI) pipeline that orchestrates the training, evaluation, and registration of the diabetes_regression model.
+# Continuous Integration (CI) pipeline that orchestrates the training, evaluation, and registration of the insurance_claim model.
 
 resources:
   containers:
@@ -12,13 +12,13 @@ trigger:
     - master
   paths:
     include:
-    - diabetes_regression/
-    - ml_service/pipelines/diabetes_regression_build_train_pipeline.py
-    - ml_service/pipelines/diabetes_regression_build_train_pipeline_with_r.py
-    - ml_service/pipelines/diabetes_regression_build_train_pipeline_with_r_on_dbricks.py
+    - insurance_claim/
+    - ml_service/pipelines/insurance_claim_build_train_pipeline.py
+    - ml_service/pipelines/insurance_claim_build_train_pipeline_with_r.py
+    - ml_service/pipelines/insurance_claim_build_train_pipeline_with_r_on_dbricks.py
 
 variables:
-- template: diabetes_regression-variables-template.yml
+- template: insurance_claim-variables-template.yml
 - group: devopsforai-aml-vg
 
 pool:
@@ -43,7 +43,7 @@ stages:
           set -e # fail on error
           export SUBSCRIPTION_ID=$(az account show --query id -o tsv)
           # Invoke the Python building and publishing a training pipeline
-          python -m ml_service.pipelines.diabetes_regression_build_train_pipeline
+          python -m ml_service.pipelines.insurance_claim_build_train_pipeline
       displayName: 'Publish Azure Machine Learning Pipeline'
 
 - stage: 'Trigger_AML_Pipeline'
@@ -94,4 +94,4 @@ stages:
     container: mlops
     timeoutInMinutes: 0
     steps:
-    - template: diabetes_regression-publish-model-artifact-template.yml
+    - template: insurance_claim-publish-model-artifact-template.yml

@@ -25,8 +25,8 @@ class Helper:
         return self._git_repo
 
     def rename_files(self):
-        # Rename all files starting with diabetes_regression with project name
-        strtoreplace = "diabetes_regression"
+        # Rename all files starting with insurance_claim with project name
+        strtoreplace = "insurance_claim"
         dirs = [".pipelines", r"ml_service/pipelines"]
         for dir in dirs:
             normDir = os.path.normpath(dir)
@@ -40,7 +40,7 @@ class Helper:
                     os.rename(src, dst)
 
     def rename_dir(self):
-        dir = "diabetes_regression"
+        dir = "insurance_claim"
         src = os.path.join(self._project_directory, dir)
         for path, subdirs, files in os.walk(src):
             for name in files:
@@ -53,7 +53,7 @@ class Helper:
 
     def delete_dir(self):
         # Delete unwanted directories
-        dirs = ["docs", r"diabetes_regression"]
+        dirs = ["docs", r"insurance_claim"]
         if (platform.system() == "Windows"):
             cmd = 'rmdir /S /Q "{}"'
         else:
@@ -84,25 +84,25 @@ def replace_project_name(project_dir, project_name, rename_name):
     files = [r".env.example",
             r".pipelines/code-quality-template.yml",
             r".pipelines/pr.yml",
-            r".pipelines/diabetes_regression-cd.yml",
-            r".pipelines/diabetes_regression-ci.yml",
+            r".pipelines/insurance_claim-cd.yml",
+            r".pipelines/insurance_claim-ci.yml",
             r".pipelines/abtest.yml",
-            r".pipelines/diabetes_regression-ci-image.yml",
-            r".pipelines/diabetes_regression-publish-model-artifact-template.yml",  # NOQA: E501
-            r".pipelines/diabetes_regression-get-model-id-artifact-template.yml",  # NOQA: E501
-            r".pipelines/diabetes_regression-batchscoring-ci.yml",
-            r".pipelines/diabetes_regression-variables-template.yml",
+            r".pipelines/insurance_claim-ci-image.yml",
+            r".pipelines/insurance_claim-publish-model-artifact-template.yml",  # NOQA: E501
+            r".pipelines/insurance_claim-get-model-id-artifact-template.yml",  # NOQA: E501
+            r".pipelines/insurance_claim-batchscoring-ci.yml",
+            r".pipelines/insurance_claim-variables-template.yml",
             r"environment_setup/Dockerfile",
             r"environment_setup/install_requirements.sh",
-            r"ml_service/pipelines/diabetes_regression_build_parallel_batchscore_pipeline.py",  # NOQA: E501
-            r"ml_service/pipelines/diabetes_regression_build_train_pipeline_with_r_on_dbricks.py",  # NOQA: E501
-            r"ml_service/pipelines/diabetes_regression_build_train_pipeline_with_r.py",  # NOQA: E501
-            r"ml_service/pipelines/diabetes_regression_build_train_pipeline.py",  # NOQA: E501
+            r"ml_service/pipelines/insurance_claim_build_parallel_batchscore_pipeline.py",  # NOQA: E501
+            r"ml_service/pipelines/insurance_claim_build_train_pipeline_with_r_on_dbricks.py",  # NOQA: E501
+            r"ml_service/pipelines/insurance_claim_build_train_pipeline_with_r.py",  # NOQA: E501
+            r"ml_service/pipelines/insurance_claim_build_train_pipeline.py",  # NOQA: E501
             r"ml_service/util/create_scoring_image.py",
-            r"diabetes_regression/conda_dependencies.yml",
-            r"diabetes_regression/evaluate/evaluate_model.py",
-            r"diabetes_regression/register/register_model.py",
-            r"diabetes_regression/training/test_train.py"]
+            r"insurance_claim/conda_dependencies.yml",
+            r"insurance_claim/evaluate/evaluate_model.py",
+            r"insurance_claim/register/register_model.py",
+            r"insurance_claim/training/test_train.py"]
 
     for file in files:
         path = os.path.join(project_dir, os.path.normpath(file))
@@ -139,8 +139,8 @@ def main(args):
         helper.validate_args()
         helper.clean_dir()
 
-        replace_project_name(project_directory, project_name, "diabetes_regression")  # NOQA: E501
-        replace_project_name(project_directory, project_name, "diabetes")
+        replace_project_name(project_directory, project_name, "insurance_claim")  # NOQA: E501
+        replace_project_name(project_directory, project_name, "claim")
 
         helper.rename_files()
         helper.rename_dir()
